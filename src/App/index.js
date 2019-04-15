@@ -4,14 +4,17 @@ import Game from '../Game';
 import './style.css';
 
 class App extends Component {
+  commandList(commandArr) {
+    console.log(commandArr)
+  }
   render() {
     return (
       <div id='App'>
         <div className='col lesson'>
-          <Lesson/>
+          <Lesson addCommandList={this.commandList}/>
         </div>
         <div className='col game'>
-          <Game/>
+          <Game test="trial"/>
         </div>
       </div>
 

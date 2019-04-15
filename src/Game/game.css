@@ -1,0 +1,24 @@
+#Game {
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(5, 20%);
+  position: relative;
+}
+
+.grid-plot {
+  background: red;
+  border: 3px solid #003366;
+  width: 100%;
+  height: 100%;
+}
+
+#robot {
+  width: 116.5px;
+  height: 116.5px;
+  left: 3.2px;
+  top: 3.2px;
+  background: orange;
+  position: absolute;
+}
