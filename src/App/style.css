@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+#App {
+  display: flex;
+}
+
+.col {
+  height: 100vh;
+}
+
+.lesson {
+  width: 33.33vw;
+}
+
+.game {
+  width: 66.66vw;
+  background: black;
+}

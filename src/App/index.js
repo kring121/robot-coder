@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import Lesson from '../Lesson';
 import Game from '../Game';
+import './style.css';
 
 class App extends Component {
   render() {
     return (
       <div id='App'>
-        <h1>Stuff</h1>
-        <Lesson/>
-        <Game/>
+        <div className='col lesson'>
+          <Lesson/>
+        </div>
+        <div className='col game'>
+          <Game/>
+        </div>
       </div>
 
     );
