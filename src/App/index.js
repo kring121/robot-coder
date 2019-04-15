@@ -4,17 +4,28 @@ import Game from '../Game';
 import './style.css';
 
 class App extends Component {
-  commandList(commandArr) {
-    console.log(commandArr)
+  constructor(props) {
+    super(props);
+    this.state = {
+      commandList: []
+    }
+    this.createCommandList = this.createCommandList.bind(this);
+  }
+
+  createCommandList(commandArr) {
+    this.setState({
+      commandList: commandArr
+    });
   }
   render() {
+    const { commandList } = this.state;
     return (
       <div id='App'>
         <div className='col lesson'>
-          <Lesson addCommandList={this.commandList}/>
+          <Lesson addCommandList={this.createCommandList}/>
         </div>
         <div className='col game'>
-          <Game test="trial"/>
+          <Game move={commandList}/>
         </div>
       </div>
 

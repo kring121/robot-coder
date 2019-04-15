@@ -7,10 +7,9 @@ class Game extends Component {
     this.state = {
       position: {x: 1, y: 1},
     }
-    this.moveRight = this.moveRight.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     // recieve x and y coordinates from state
     const { position } = this.state;
 
@@ -20,32 +19,30 @@ class Game extends Component {
     robot.style.gridRowStart = position.y;
   }
 
-  moveRight() {
-    const { position } = this.state;
-    this.setState({
-      position: {x: position.x += 1, y: position.y}
-    })
+  componentDidUpdate() {
+    const moveList = this.props.move;
+    this.move(moveList);
   }
 
-  moveLeft() {
+  move(movesArr) {
+    // recieve x and y coordinates from state
     const { position } = this.state;
-    this.setState({
-      position: {x: position.x -= 1, y: position.y}
-    })
-  }
 
-  moveUp() {
-    const { position } = this.state;
-    this.setState({
-      position: {x: position.x, y: position.y -= 1}
-    })
-  }
-
-  moveDown() {
-    const { position } = this.state;
-    this.setState({
-      position: {x: position.x, y: position.y += 1}
-    })
+    for(let i = 0; i < movesArr.length; i++) {
+      if(movesArr[i] === 'up') {
+        position.y -= 1
+      } else if(movesArr[i] === 'down') {
+        position.y += 1
+      } else if(movesArr[i] === 'left') {
+        position.x -= 1
+      } else  {
+        position.x += 1
+      }
+      // position the robot based off the commands
+      const robot = document.getElementById('robot');
+      robot.style.gridColumnStart = position.x;
+      robot.style.gridRowStart = position.y;
+    }
   }
 
   render() {

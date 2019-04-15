@@ -21,4 +21,5 @@
   top: 3.2px;
   background: orange;
   position: absolute;
+  transition: all 1s;
 }
