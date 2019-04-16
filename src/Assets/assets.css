@@ -1,0 +1,50 @@
+/*ROBOT */
+.cls-1 {
+  fill:#acacac
+}
+
+.cls-2 {
+  fill:#00aeef
+}
+
+.cls-3 {
+  fill:#ed1c24
+}
+
+.cls-4 {
+  fill:#ff0
+}
+
+.cls-5 {
+  fill:#fff;
+  fill-rule:evenodd
+}
+
+
+/*OIL*/
+.oil-cls1 {
+  fill-rule:evenodd
+}
+
+
+/*CONE*/
+.cone-cls1, .cone-cls-2  {
+  fill:#f85c00;fill-rule:evenodd
+}
+
+.cone-cls2  {
+  fill:#ba4805
+}
+
+
+/*CHARGE*/
+
+.charge {
+  fill:#ff0;
+  fill-rule:evenodd
+}
+
+
+
+
+

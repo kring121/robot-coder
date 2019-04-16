@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './robot.css';
+import '../assets.css';
 
 class Robot extends Component {
   render() {
   return(
-    <svg id="robot" viewBox="0 0 1000 1000">
+    <svg className="asset" id="robot" viewBox="0 0 1000 1000">
         <rect id="Rounded_Rectangle_1" width="288" height="286" x="356" y="214" className="cls-1" rx="10" ry="10"/>
         <rect id="Rounded_Rectangle_6" width="25" height="117" x="254" y="442" className="cls-1" rx="10" ry="10"/>
         <circle cx="426" cy="332" r="30" className="cls-2"/>
