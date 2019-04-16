@@ -18,13 +18,19 @@ class Game extends Component {
   }
 
   componentDidUpdate() {
-    const moveList = this.props.move;
-    this.move(moveList);
+    const { gameStatus } = this.state;
+
+    // if gamestatus is set then don't call moves
+    if(gameStatus === '') {
+      const moveList = this.props.move;
+      this.move(moveList);
+    }
+
   }
 
   move(movesArr) {
     // recieve x and y coordinates from state
-    const { position } = this.state;
+    const { position, chargePosition, gameStatus } = this.state;
     const robot = document.getElementById('robot');
 
     for(let i = 0; i < movesArr.length; i++) {
@@ -32,24 +38,27 @@ class Game extends Component {
 
         if(movesArr[i] === 'up') {
           position.y -= 1
-          // console.log(position)
         } else if(movesArr[i] === 'down') {
           position.y += 1
-          // console.log(position)
         } else if(movesArr[i] === 'left') {
           position.x -= 1
-          // console.log(position)
         } else  {
           position.x += 1
-          // console.log(position)
         }
 
-        this.checkMove(position) ?
-        // position the robot based off the commands
-        robot.style.transform = `translate(${position.x * 120 - 120}px, ${position.y * 120 - 120}px)` :
+        if(this.checkMove(position)){
+          // position the robot based off the commands
+          robot.style.transform = `translate(${position.x * 120 - 120}px, ${position.y * 120 - 120}px)`
+        } else {
+          // robot fall
+          robot.style.transform = `translate(${position.x * 120 - 120}px, 110vh)`;
+          this.setState({gameStatus: 'lost'});
+        }
 
-        // robot fall
-        robot.style.transform = `translate(${position.x * 120 - 120}px, 110vh)`;
+        // Check for win
+        if(position.x === chargePosition.x && position.y === chargePosition.y) {
+          this.setState({gameStatus: 'won'});
+        }
 
       }, i*750 );
     }
@@ -59,7 +68,7 @@ class Game extends Component {
     // check if out of bounds
     if(position.x < 0 || position.y < 0) {
       return false
-    } else if(position.x > 4 || position.y > 4) {
+    } else if(position.x > 5 || position.y > 5) {
       return false
     } else {
       // if not out of bounds check for collision
