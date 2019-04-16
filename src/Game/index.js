@@ -3,6 +3,7 @@ import Robot from '../Assets/Robot';
 import Charge from '../Assets/Charge';
 import Cone from '../Assets/Cone';
 import Oil from '../Assets/Oil';
+import Replay from '../Replay';
 import './game.css'
 
 class Game extends Component {
@@ -25,12 +26,11 @@ class Game extends Component {
       const moveList = this.props.move;
       this.move(moveList);
     }
-
   }
 
   move(movesArr) {
     // recieve x and y coordinates from state
-    const { position, chargePosition, gameStatus } = this.state;
+    const { position, chargePosition } = this.state;
     const robot = document.getElementById('robot');
 
     for(let i = 0; i < movesArr.length; i++) {
@@ -52,12 +52,12 @@ class Game extends Component {
         } else {
           // robot fall
           robot.style.transform = `translate(${position.x * 120 - 120}px, 110vh)`;
-          this.setState({gameStatus: 'lost'});
+          this.setState({gameStatus: false});
         }
 
         // Check for win
         if(position.x === chargePosition.x && position.y === chargePosition.y) {
-          this.setState({gameStatus: 'won'});
+          this.setState({gameStatus: true});
         }
 
       }, i*750 );
@@ -66,7 +66,7 @@ class Game extends Component {
 
   checkMove(position) {
     // check if out of bounds
-    if(position.x < 0 || position.y < 0) {
+    if(position.x < 1 || position.y < 1) {
       return false
     } else if(position.x > 5 || position.y > 5) {
       return false
@@ -77,7 +77,7 @@ class Game extends Component {
   }
 
   collisionCheck(position) {
-    const { conePosition, oilPosition, chargePosition } = this.state;
+    const { conePosition, oilPosition } = this.state;
 
     // collision ?
     let noCollision = true;
@@ -108,7 +108,7 @@ class Game extends Component {
   }
 
   render() {
-    const { chargePosition, oilPosition, conePosition } = this.state;
+    const { chargePosition, oilPosition, conePosition, gameStatus } = this.state;
     return (
       <div id='Game'>
         <div className='grid-plot'></div>
@@ -137,7 +137,8 @@ class Game extends Component {
         <div className='grid-plot'></div>
         <div className='grid-plot'></div>
         <Robot/>
-        <Charge x={chargePosition.x} y={chargePosition.y}/>
+        {gameStatus ? null : <Charge x={chargePosition.x} y={chargePosition.y}/>}
+        {gameStatus === '' ? null : <Replay/>}
         {conePosition.map(cone => <Cone x={cone.x} y={cone.y} key={`cone${cone.id}`} />)}
         {oilPosition.map(oil => <Oil x={oil.x} y={oil.y} key={`oil${oil.id}`} />)}
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './lesson.css';
 
 class Lesson extends Component {
   constructor(props) {
@@ -29,13 +30,21 @@ class Lesson extends Component {
   }
 
   render() {
+    const { commands } = this.state;
     return (
       <div id='Lesson'>
-        <button onClick={() => this.addCommand('up')}>Up</button>
-        <button onClick={() => this.addCommand('down')}>Down</button>
-        <button onClick={() => this.addCommand('left')}>Left</button>
-        <button onClick={() => this.addCommand('right')}>Right</button>
-        <button onClick={this.runCommands}>Run</button>
+        <h1>Basics of functions</h1>
+        <p>Like we just learned in the video, functions are a pretty essential part of programming languages.</p>
+        <p>To get a better understanding of how functions work, lets try to direct our robot to the charger</p>
+        <div id='command-row'>
+          <button onClick={() => this.addCommand('up')}>Up</button>
+          <button onClick={() => this.addCommand('down')}>Down</button>
+          <button onClick={() => this.addCommand('left')}>Left</button>
+          <button onClick={() => this.addCommand('right')}>Right</button>
+        </div>
+        <div id='run-row'>
+          <button onClick={this.runCommands}>Run</button>
+        </div>
       </div>
     );
   }
