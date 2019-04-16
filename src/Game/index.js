@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Robot from '../Assets';
 import './game.css'
 
 class Game extends Component {
@@ -81,7 +82,7 @@ class Game extends Component {
         <div className='grid-plot'></div>
         <div className='grid-plot'></div>
         <div className='grid-plot'></div>
-        <div id='robot'></div>
+        <Robot id='robot'/>
       </div>
     );
   }
